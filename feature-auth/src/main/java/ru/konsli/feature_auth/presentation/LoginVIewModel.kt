@@ -10,4 +10,5 @@ class LoginViewModel @Inject constructor(
     private val repository: TestRepo
 ) : ViewModel(){
     val testText = "Hey"
+
 }

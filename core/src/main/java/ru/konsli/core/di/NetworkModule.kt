@@ -30,7 +30,6 @@ object NetworkModule {
     fun provideOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient{
-
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -50,7 +49,6 @@ object NetworkModule {
         client: OkHttpClient,
         gson: Gson
     ): Retrofit{
-
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(client)
@@ -63,7 +61,6 @@ object NetworkModule {
     fun provideCoursesApi(
         retrofit: Retrofit
     ): CoursesApi{
-
         return retrofit.create(CoursesApi::class.java)
     }
 
