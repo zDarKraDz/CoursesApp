@@ -13,4 +13,6 @@ interface CourseRepository {
         courseId: Int,
         isFavorite: Boolean
     )
+
+    suspend fun refreshCourses()
 }

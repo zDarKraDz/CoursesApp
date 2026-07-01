@@ -14,9 +14,9 @@ fun CourseDto.toEntity(): CourseEntity{
         text = text,
         price = price.toInt(),
         rate = rate.toFloat(),
-        startDate = LocalDate.parse(startDate),
+        startDate = startDate,
         hasLike = hasLike,
-        publishDate = LocalDate.parse(publishDate)
+        publishDate = publishDate
     )
 }
 

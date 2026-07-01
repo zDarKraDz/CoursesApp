@@ -8,7 +8,7 @@ data class Course(
     val description: String,
     val price: Int,
     val rate: Float,
-    val startDate: LocalDate,
+    val startDate: String,
     val isFavorite: Boolean,
-    val publishDate: LocalDate
+    val publishDate: String
 )

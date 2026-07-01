@@ -3,12 +3,15 @@ package ru.konsli.feature_home.data.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.konsli.core.database.dao.CourseDao
+import ru.konsli.core.mapper.toEntity
+import ru.konsli.core.network.api.CoursesApi
 import ru.konsli.feature_home.data.mapper.toDomain
 import ru.konsli.feature_home.domain.model.Course
 import ru.konsli.feature_home.domain.repository.CourseRepository
 import javax.inject.Inject
 
 class CourseRepositoryImpl @Inject constructor(
+    private val api: CoursesApi,
     private val dao: CourseDao
 ) : CourseRepository {
 
@@ -27,5 +30,15 @@ class CourseRepositoryImpl @Inject constructor(
         isFavorite: Boolean
     ) {
         dao.updateFavoriteCourse(courseId, isFavorite)
+    }
+
+    override suspend fun refreshCourses() {
+        val response = api.getCourses()
+
+        val entities = response.courses.map {
+            it.toEntity()
+        }
+
+        dao.insertCourses(entities)
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
@@ -12,7 +13,9 @@ android {
             minorApiLevel = 1
         }
     }
-
+    buildFeatures {
+        compose = true
+    }
     defaultConfig {
         minSdk = 26
 
@@ -26,6 +29,11 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.androidx.compose.bom))
+
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
